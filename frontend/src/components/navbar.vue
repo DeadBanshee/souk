@@ -14,7 +14,15 @@
                 <ul class="flex space-x-4 items-center">
                     <li><router-link to="/" class="text-white font-bold hover:text-gray-300">Home</router-link></li>
                     <li><img src="/img/shopping.png" alt="Logo" @click="cartStore.showCart = !cartStore.showCart" class="h-8 cursor-pointer" /></li>
-                    <li><img src="/img/user.png" alt="Logo" class="h-8 cursor-pointer" /></li>
+
+                    <li><img src="/img/user.png" alt="Logo" @click="handleProfileClick()" class="h-8 cursor-pointer" /></li>
+
+                    <ul v-if="profileOptions" class="absolute right-20 top-20 w-48 bg-white rounded shadow-lg">
+                        <li class="px-4 py-2 hover:bg-gray-100"><router-link to="/profile">Profile</router-link></li>
+                        <li class="px-4 py-2 hover:bg-gray-100"><router-link to="/orders">Orders</router-link></li>
+                        <li class="px-4 py-2 hover:bg-gray-100"><router-link to="/logout">Logout</router-link></li>
+                    </ul>
+
                 </ul>
             </div>
         </nav>
@@ -29,8 +37,22 @@
 <script setup>
 import { ref } from 'vue';
 import { useCartStore } from '../stores/cartStore';
+import { useAuthStore } from '../stores/authStore';
 import CartLateral from './cartLateral.vue';
 
 const cartStore = useCartStore();
+
+const authStore = useAuthStore();
+
+const profileOptions = ref(false) 
+
+const handleProfileClick = () => {
+    if(authStore.token !== null) {
+        profileOptions.value = !profileOptions.value;
+        return;
+    }else{
+        window.location.href = '/login';
+    }
+};
 
 </script>
