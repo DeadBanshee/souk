@@ -13,6 +13,16 @@ export const useProductStore = defineStore('products', {
         return false
       }
     },
+    async fetchSingleProduct(id) {
+      try {
+        const res = await axios.get(`http://localhost:8000/api/products/${id}`)
+
+        return res.data  
+      } catch (error) {
+        console.error('Error while fetching tasks:', error.response?.data?.error || error.message)
+        return false
+      }
+    },
 
   }
 })
