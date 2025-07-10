@@ -13,7 +13,7 @@ export const useAuthStore = defineStore('auth', {
           password
         })
 
-        this.token = res.data.token
+        this.token = res.data.access_token
         localStorage.setItem('token', this.token)
         return true
 
@@ -32,7 +32,7 @@ export const useAuthStore = defineStore('auth', {
         password_confirmation: password
         });
 
-        this.token = res.data.token
+        this.token = res.data.access_token
         localStorage.setItem('token', this.token)
         console.log('Sign Up successful:', res.data.token)
         return true
@@ -42,9 +42,21 @@ export const useAuthStore = defineStore('auth', {
         return false
       }
     },
-    logout() {
+    async logout() {
+
+      try {
+
+        await axios.delete(`http://localhost:8000/api/logout`, {
+          headers: { Authorization: `Bearer ${this.token}` }
+        })
+
       this.token = null
       localStorage.removeItem('token')
+
+      } catch (error) {
+        console.error('Error while logging out:', error.response?.data?.error || error.message)
+        return false
+      }
       
     },
 

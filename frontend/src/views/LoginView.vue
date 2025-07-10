@@ -110,6 +110,7 @@ const login = async () => {
 
     try {
         await authStore.login(loginUsername.value, loginPassword.value);
+        window.location.href = '/';
     } catch (error) {
         console.error('Login failed:', error);
     }
