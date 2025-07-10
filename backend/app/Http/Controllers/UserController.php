@@ -36,11 +36,15 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('name', 'password');
 
-        if (!$token = Auth::guard('api')->attempt($credentials)) {
+        $user = User::where('name', $credentials['name'])->first();
+
+        if (!$user || !\Hash::check($credentials['password'], $user->password)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
+
+        $token = Auth::guard('api')->login($user);
 
         return $this->respondWithToken($token);
     }
