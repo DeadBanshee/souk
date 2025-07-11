@@ -40,9 +40,11 @@
         </div>
 
         <div class="absolute bottom-0 flex min-w-[28rem] flex-col space-y-4 gap-1 p-4 font-sans text-base font-normal text-black">
-            <div role="button" @click="router.push('/'), authStore.logout()" class="bg-blue-500 text-white rounded-lg p-2 shadow-xl text-center font-bold hover:scale-105 hover:bg-blue-600 transition-all">
-                Checkout
-            </div>
+            <router-link to="/checkout" class="text-white flex flex-col sm:flex-row items-center gap-x-2 hover:text-gray-300">
+                <div role="button" class="bg-blue-500 text-white rounded-lg p-2 shadow-xl text-center font-bold hover:scale-105 hover:bg-blue-600 transition-all">
+                    Checkout
+                </div>
+            </router-link>
         </div>
 
 

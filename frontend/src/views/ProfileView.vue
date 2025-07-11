@@ -16,41 +16,39 @@
 
           <input class="w-full p-2 border mt-5 border-gray-300 rounded" type="text" v-model="username" placeholder="Username" />
           <input class="w-full p-2 border mt-5 border-gray-300 rounded" type="email" v-model="email" placeholder="Email" />
+          <hr class="h-px my-5 bg-gray-200 border-0 dark:bg-gray-400">
 
       </div>
+
     </div>
   </div>
 </template>
 
 <script setup>
 import Navbar from '../components/navbar.vue';
-import { ref } from 'vue';
+import { computed, onMounted } from 'vue';
 import { useAuthStore } from '../stores/authStore';
+import { useProfileStore } from '../stores/profileStore';
 import LateralMenu from '../components/profilePageLateralMenu.vue';
 
 const authStore = useAuthStore();
+const profileStore = useProfileStore();
 
+onMounted(async () => {
+  if (authStore.token) {
+    await profileStore.fetchProfile();
+  } else {
+    window.location.href = '/login';
+  }
+});
 
-const username = ref('');
-const email = ref('');
+const username = computed({
+  get: () => profileStore.profile.name || '',
+  set: (val) => profileStore.profile.name = val
+});
 
-const login = async () => {
-
-    try {
-        await authStore.login(loginUsername.value, loginPassword.value);
-        window.location.href = '/';
-    } catch (error) {
-        console.error('Login failed:', error);
-    }
-};
-
-const signup = async () => {
-    try {
-        await authStore.signUp(signupUsername.value, signupEmail.value, signupPassword.value);
-        window.location.href = '/';
-    } catch (error) {
-        console.error('Signup failed:', error);
-    }
-};
-
+const email = computed({
+  get: () => profileStore.profile.email || '',
+  set: (val) => profileStore.profile.email = val
+});
 </script>
