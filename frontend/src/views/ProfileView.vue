@@ -4,7 +4,7 @@
     <Navbar />
 
     <!-- Conteúdo principal -->
-    <div class="mt-10 bg-gray-100 rounded-lg mx-auto w-11/12 max-w-6xl flex">
+    <div class="mt-10 bg-gray-100 min-h-[40rem] rounded-lg mx-auto w-11/12 max-w-6xl flex">
       <!-- Menu lateral -->
       <div class="w-1/4">
         <LateralMenu />
@@ -14,9 +14,9 @@
       <div class="w-3/4 p-6 flex flex-col gap-4">
         <h1 class="text-3xl font-bold">Account information:</h1>
 
-        <div class="bg-white p-4 rounded shadow">
-          <p>data</p>
-        </div>
+          <input class="w-full p-2 border mt-5 border-gray-300 rounded" type="text" v-model="username" placeholder="Username" />
+          <input class="w-full p-2 border mt-5 border-gray-300 rounded" type="email" v-model="email" placeholder="Email" />
+
       </div>
     </div>
   </div>

@@ -38,6 +38,14 @@
             <span>Total:</span>
             <span>${{ cartStore.totalPrice.toFixed(2) }}</span>
         </div>
+
+        <div class="absolute bottom-0 flex min-w-[28rem] flex-col space-y-4 gap-1 p-4 font-sans text-base font-normal text-black">
+            <div role="button" @click="router.push('/'), authStore.logout()" class="bg-blue-500 text-white rounded-lg p-2 shadow-xl text-center font-bold hover:scale-105 hover:bg-blue-600 transition-all">
+                Checkout
+            </div>
+        </div>
+
+
     </div>
 </template>
 
