@@ -10,7 +10,7 @@
                     </router-link>
                 </div>
 
-                <input type="text" placeholder="Search..." class="px-2 py-1 rounded w-1/2 bg-gray-700 text-white" />
+                <input type="text" v-model="searchQuery" placeholder="Search..." class="px-2 py-1 rounded w-1/2 bg-gray-700 text-white" />
                 <ul class="flex space-x-4 items-center">
                     <li><router-link to="/" class="text-white font-bold hover:text-gray-300">Home</router-link></li>
                     <li><img src="/img/shopping.png" alt="Logo" @click="cartStore.showCart = !cartStore.showCart" class="h-8 cursor-pointer" /></li>
@@ -35,15 +35,21 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { useCartStore } from '../stores/cartStore';
 import { useAuthStore } from '../stores/authStore';
+import { useProductStore } from '../stores/productStore';
 import CartLateral from './cartLateral.vue';
+import debounce from 'lodash/debounce'
 
 const cartStore = useCartStore();
-
 const authStore = useAuthStore();
+const productStore = useProductStore();
 
+const productList = ref([]);
+
+const searchQuery = ref('')
+// HANDLE PROFILE OPTIONS
 const profileOptions = ref(false) 
 
 const handleProfileClick = () => {
@@ -54,5 +60,31 @@ const handleProfileClick = () => {
         window.location.href = '/login';
     }
 };
+
+
+// HANDLE CONTACT SEARCH
+let controller = null
+
+watch(
+  searchQuery,
+  debounce(async (newQuery) => {
+    if (controller) {
+      controller.abort()
+    }
+
+    if (newQuery.trim() === '') {
+      contactsList.value = null
+      return
+    }
+
+    console.log('Searching for:', newQuery)
+
+    controller = new AbortController()
+
+    const result = await productStore.searchProducts(newQuery, controller.signal)
+    productList.value = result
+  }, 300)
+)
+
 
 </script>

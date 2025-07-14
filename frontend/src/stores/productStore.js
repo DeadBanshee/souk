@@ -23,6 +23,18 @@ export const useProductStore = defineStore('products', {
         return false
       }
     },
+    async searchProducts(query) {
+      try {
+        const response = await axios.post('/products/search', { query }, { signal })
+        return response.data
+      } catch (error) {
+        if (axios.isCancel(error)) {
+          console.warn('Search request canceled')
+        } else {
+          console.error('Error searching contacts:', error.response?.data)
+        }
+      }
+    },
 
   }
 })

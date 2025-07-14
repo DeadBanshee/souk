@@ -18,6 +18,8 @@ Route::post('/products', [ProductController::class, 'store']);
 
 Route::get('/products/{id}', [ProductController::class, 'fetchProduct']);
 
+Route::get('/products/search', [ProductController::class, 'fetchProduct']);
+
 //AUTHENTICATION ROUTES
 Route::post('/login', [UserController::class, 'login']);
 

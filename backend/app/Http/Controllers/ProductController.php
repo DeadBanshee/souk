@@ -57,4 +57,15 @@ class ProductController extends Controller
 
         return response()->json($product, 200);
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $products = Product::where('name', 'like', "%{$query}%")
+            ->orderBy('name')
+            ->paginate(10); // você pode ajustar esse valor
+
+        return response()->json($products);
+    }
 }
