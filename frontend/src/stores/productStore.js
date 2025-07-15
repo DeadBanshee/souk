@@ -23,9 +23,9 @@ export const useProductStore = defineStore('products', {
         return false
       }
     },
-    async searchProducts(query) {
+    async searchProducts(query, signal) {
       try {
-        const response = await axios.post('/products/search', { query }, { signal })
+        const response = await axios.post('http://localhost:8000/api/products/search', { query }, { signal })
         return response.data
       } catch (error) {
         if (axios.isCancel(error)) {

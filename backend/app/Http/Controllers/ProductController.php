@@ -64,7 +64,8 @@ class ProductController extends Controller
 
         $products = Product::where('name', 'like', "%{$query}%")
             ->orderBy('name')
-            ->paginate(10); // você pode ajustar esse valor
+            ->offset(0)->limit(6)
+            ->get();
 
         return response()->json($products);
     }
