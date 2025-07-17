@@ -20,6 +20,10 @@ Route::get('/products/{id}', [ProductController::class, 'fetchProduct']);
 
 Route::post('/products/search', [ProductController::class, 'search']);
 
+Route::get('/products/category/{category}', [ProductController::class, 'fetchProductsByCategory']);
+
+Route::get('/fetchCategories', [ProductController::class, 'fetchCategories']);
+
 //AUTHENTICATION ROUTES
 Route::post('/login', [UserController::class, 'login']);
 

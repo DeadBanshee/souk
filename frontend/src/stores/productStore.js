@@ -35,6 +35,15 @@ export const useProductStore = defineStore('products', {
         }
       }
     },
+    async fetchProductsByCategory(categoryId) {
+      try {
+        const res = await axios.get(`http://localhost:8000/api/products/category/${categoryId}`)
+        return res.data
+      } catch (error) {
+        console.error('Error while fetching products by category:', error.response?.data?.error || error.message)
+        return false
+      }
+    }
 
   }
 })

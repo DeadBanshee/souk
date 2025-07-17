@@ -1,8 +1,10 @@
 <template>
-    <div class="flex flex-col justify-center min-h-screen bg-gray-100 text-black">
+
         <div>
             <Navbar />
         </div>
+
+    <div class="flex flex-col justify-center min-h-screen bg-gray-100 text-black">
 
         <div class=" mt-16 bg-white shadow-md rounded-lg p-6 max-w-6xlxl mx-auto">
             <div class="p-4">

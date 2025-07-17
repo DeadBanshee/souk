@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -69,4 +70,12 @@ class ProductController extends Controller
 
         return response()->json($products);
     }
+
+    public function fetchCategories(Request $request){
+
+        $categories = Category::all();
+
+        return response()->json($categories);
+    }
+
 }
