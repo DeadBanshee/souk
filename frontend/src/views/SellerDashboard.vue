@@ -6,14 +6,16 @@
       <!-- Logo e Título -->
       <div class="flex flex-col items-center mb-8">
         <img src="/img/store.png" alt="Logo" class="w-24 h-24 mb-2" />
-        <h1 class="text-4xl font-bold">Souk</h1>
+        <h1 class="text-4xl font-bold">Souk For Sellers</h1>
       </div>
 
       <!-- Área de Login e Cadastro -->
       <div class="bg-white shadow-lg rounded-lg p-8 flex flex-col md:flex-row gap-8 w-full max-w-4xl">
         <!-- Sign Up -->
         <div class="flex-1">
-          <h2 class="text-2xl font-bold mb-6 text-center">Sign Up</h2>
+            <div class="text-center mb-6 flex flex-col items-center">
+                <h2 class="text-2xl font-bold mb-6 text-center">Sign Up as a <h2 class="text-green-500">Seller</h2></h2>
+            </div>
 
           <div class="mb-4">
             <label class="block font-semibold mb-1">Username</label>
@@ -91,7 +93,7 @@
     </div>
 
     <div class="mt-8 text-center">
-      <p>Are you a seller?</p> <p class="text-blue-500 hover:underline font-bold cursor-pointer"><router-link to="/seller-dashboard"> Click here to Login as an seller. </router-link></p>
+      <p class="text-blue-500 hover:underline font-bold cursor-pointer"><router-link to="/login"> Click here to Login as an user. </router-link></p>
       <p class="mt-8 text-center text-gray-600">© 2023 Souk. All rights reserved.</p>
     </div>
 

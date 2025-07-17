@@ -79,16 +79,16 @@
             class="absolute right-0 top-14 w-48 bg-white rounded shadow-lg text-gray-700 z-50"
           >
             <li class="px-4 py-2 hover:bg-gray-100">
-              <router-link to="/profile">Perfil</router-link>
+              <router-link to="/profile">Profile</router-link>
             </li>
             <li class="px-4 py-2 hover:bg-gray-100">
-              <router-link to="/orders">Pedidos</router-link>
+              <router-link to="/orders">Orders</router-link>
             </li>
             <li
               @click="authStore.logout()"
               class="px-4 py-2 hover:bg-gray-100 cursor-pointer"
             >
-              Sair
+              Logout
             </li>
           </ul>
         </div>

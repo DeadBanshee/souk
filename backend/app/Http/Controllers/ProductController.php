@@ -78,4 +78,11 @@ class ProductController extends Controller
         return response()->json($categories);
     }
 
+    public function fetchProductsByCategory($category)
+    {
+        $products = Product::where('category_id', $category)->with('images')->get();
+
+        return response()->json($products, 200);
+    }
+
 }
